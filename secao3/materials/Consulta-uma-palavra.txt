@@ -1,0 +1,29 @@
+select * from palavra_localizacao
+select * from palavras where palavra = 'python'
+select * from palavras where palavra = 'program'
+
+select
+  urls.idurl,
+  urls.url,
+  plc.localizacao
+from 
+  palavra_localizacao plc
+inner join 
+  urls on plc.idurl = urls.idurl
+where
+  plc.idpalavra = 2
+
+
+SELECT * FROM words WHERE word = 'python';
+SELECT * FROM words WHERE word = 'program';
+
+SELECT
+	urls.idurl,
+    urls.url,
+    wl.location
+FROM
+	word_location wl
+INNER JOIN
+	urls on wl.idurl = urls.idurl
+WHERE
+	wl.idurl = 2

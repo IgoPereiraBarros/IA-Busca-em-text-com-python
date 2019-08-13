@@ -1,0 +1,7 @@
+SELECT * FROM words WHERE word = 'python';
+SELECT * FROM words WHERE word = 'program';
+
+SELECT wl1.idurl, wl1.location,  wl2.location
+FROM word_location wl1, word_location wl2
+WHERE wl1.idword = 244
+AND wl1.idurl = wl2.idurl AND wl2.idword = 2

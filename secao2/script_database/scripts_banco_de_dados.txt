@@ -1,0 +1,66 @@
+create database indice;
+use indice;
+
+create table urls (
+	idurl int not null auto_increment,
+    url varchar(1000) not null,
+    constraint pk_urls_idurl primary key (idurl)
+);
+create index idx_urls_url on urls (url);
+
+create table palavras (
+	idpalavra int not null auto_increment,
+    palavra varchar(200) not null,
+    constraint pk_palavras_palavra primary key (idpalavra)
+);
+create index idx_palavras_palavra on palavras (palavra);
+
+create table palavra_localizacao (
+	idpalavra_localizacao int not null auto_increment,
+    idurl int not null,
+    idpalavra int not null,
+    localizacao int,
+    constraint pk_idpalavra_localizacao primary key (idpalavra_localizacao),
+    constraint fk_palavra_localizacao_idurl foreign key (idurl) references urls (idurl),
+    constraint fk_palavra_localizacao_idpalavra foreign key (idpalavra) references palavras (idpalavra)
+);
+create index idx_palavra_localizacao_idpalavra on palavra_localizacao (idpalavra);
+
+alter database indice character set = utf8mb4 collate = utf8mb4_unicode_ci;
+alter table palavras convert to character set utf8mb4 collate utf8mb4_unicode_ci;
+alter table palavras modify column palavra varchar(200) character set utf8mb4 collate utf8mb4_unicode_ci;
+
+
+
+
+
+
+
+
+create table urls (
+	idurl int not null auto_increment,
+    url varchar(3000) not null,
+    constraint pk_urls_idurl primary key (idurl)
+);
+
+create table words (
+	idword int not null auto_increment,
+    word varchar(500) not null,
+    constraint pk_words_word primary key (idword)
+);
+create index idx_words_word on words (word);
+
+create table word_location (
+	idword_location int not null auto_increment,
+    idurl int not null,
+    idword int not null,
+    location int,
+    constraint pk_idword_location primary key (idword_location),
+    constraint fk_word_location_idurl foreign key (idurl) references urls (idurl),
+    constraint fk_word_location_idword foreign key (idword) references words (idword)
+);
+create index idx_word_location_idword on word_location (idword);
+
+alter database indice1 character set = utf8mb4 collate = utf8mb4_unicode_ci;
+alter table words convert to character set utf8mb4 collate utf8mb4_unicode_ci;
+alter table words modify column word varchar(500) character set utf8mb4 collate utf8mb4_unicode_ci;

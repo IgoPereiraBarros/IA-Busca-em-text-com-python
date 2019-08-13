@@ -1,0 +1,23 @@
+CREATE TABLE url_relationship(
+	idurl_relationship int not null auto_increment,
+    idurl_origin int not null,
+    idurl_destination int not null,
+    constraint pk_idurl_relationship primary key (idurl_relationship),
+    constraint fk_url_relationship_idurl_origin foreign key (idurl_origin) references urls(idurl),
+    constraint fk_url_relationship_idurl_destination foreign key (idurl_destination) references urls(idurl)
+);
+
+CREATE INDEX idx_url_relationship_idurl_origin on url_relationship(idurl_origin);
+CREATE INDEX idx_url_relationship_idurl_destination on url_relationship(idurl_destination);
+
+
+CREATE TABLE url_word(
+	idurl_word int not null auto_increment,
+    idword int not null,
+    idurl_relationship int not null,
+    constraint pk_url_word_idurl_word primary key (idurl_word),
+    constraint fk_url_word_idword foreign key (idword) references words (idword),
+    constraint fk_url_word_idurl_relationship foreign key (idurl_relationship) references url_relationship (idurl_relationship)
+);
+
+CREATE INDEX idx_url_word_idword on url_word (idword);
